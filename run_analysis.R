@@ -58,8 +58,13 @@ dataY <- read.table("Y_merged.txt")
 dataJ <- merge(dataY, activityLabels, by="V1")
 data$Activity <- dataJ[2]$V2
 
+library(data.table)
 data <- data[,c(which(!like(names(data), "*Discard*")))]
 
 data <- aggregate(. ~ Activity, data=data, FUN="mean")
-
+cnames <- data$Activity
+data <- as.data.frame(t(data[,-1]))
+colnames(data) <- cnames
+data$SUBJECT <- row.names(data)
+data <- data[,c(7,1:6)]
 write.csv(data, file="./tidy_data.csv", row.names=FALSE)
