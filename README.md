@@ -40,7 +40,7 @@ This file contains one function, tidy_data(), which performs the entire transfor
 These files are then loaded up into R and merged together to create a unified dataset with only the required variables as specified in the cleanedfeatures.txt file. This dataset is then aggregated via the means function to get the mean(average) value for each reading per activity. The aggregated data have their column and rows inverted and we use the t function to swith them around to create the final tidy data.
 
 ### Execution
-In order to generate the final tidy dataset the following commands need to be executed:  
+In order to generate the final tidy dataset the UCI HAR Dataset.zip and run_analysis.R files need to be in the working directory and the following two commands need to be executed:  
 * source("run_analysis.R")  
 * tidy_data()
 
