@@ -19,13 +19,13 @@ From that original dataset the mean and standard deviation variables from each m
 The selected labels take on a standard readable format that can be derived from the original feature selection quoted above.  
 Body refers to the body acceleration.  
 Gravity refers to gravitational acceleration.  
-Acceleration refers to the reading for the accelerometer.
-Time refers to time domain signals.
-AngularVelocity refers to the rate of change of angular displacement.
-Magnitude refers to the three-dimensional signal calculated using Euclidean norm.
+Acceleration refers to the reading for the accelerometer.  
+Time refers to time domain signals.  
+AngularVelocity refers to the rate of change of angular displacement.  
+Magnitude refers to the three-dimensional signal calculated using Euclidean norm.  
 Jerk refers to body linear acceleration and angular velocity signals derived in time.  
-Gyroscope refers to the gyroscopic signals.
-Frequency refers to the application of a Fast Fourier Transform.
+Gyroscope refers to the gyroscopic signals.  
+Frequency refers to the application of a Fast Fourier Transform.  
 
 This resulted in 64 variables having the following lables:
 * "BodyAccelerationTimeMeanX"
@@ -102,11 +102,11 @@ The resultant data are made up of one row for each of the variables mentioned ab
 * Walking downstairs
 * Walking upstairs
 
-A sample row would look like:
-*SUBJECT*	*SITTING*	*STANDING*	*WALKING*	*WALKING_DOWNSTAIRS*	*WALKING_UPSTAIRS*
+A sample header and row would look like:  
+**SUBJECT**	**SITTING**	**STANDING**	**WALKING**	**WALKING_DOWNSTAIRS**	**WALKING_UPSTAIRS**  
 BodyAccelerationFrequencyMeanX	0.3301359	0.3702165	0.3444245	0.3151089	0.2771606	0.3316856
 
-This results in a dataset containing 7 columns and 64 rows.
+The resultant dataset contains 7 columns and 64 rows.
 
 ## Transformations  
 In order to transform the data into a tidy dataset a number of transformations needed to be performed:
@@ -115,8 +115,8 @@ In order to transform the data into a tidy dataset a number of transformations n
 * The activity headings were extracted from the zip file and loaded into R.
 * The training and test data for the activity types were extracted from the zip file, loaded into R and merged into one dataset.
 * All of these objects were saved to the file system as: X_headers.txt, X_merged.txt, activities.txt and Y_merged.txt
-* The variables required for the tidy dataset were identified and new file file was manually created with a mapping of the original variable name and the new tidy variable name. This file is called cleanedfeatures.txt
-* cleanedfeatures.txt contains the 64 label mappings in the following format: "tBodyAcc-mean()-X","BodyAccelerationTimeMeanX"
+* The variables required for the tidy dataset were identified and a new file file was manually created with a mapping of the original variable name and the new tidy variable name. This file is called cleanedfeatures.txt
+* cleanedfeatures.txt contains the 64 label mappings in the following format ("original_name","new_name"): "tBodyAcc-mean()-X","BodyAccelerationTimeMeanX"
 
 Once all those files are in place the following processes can be run on the newly created files:
 * Load up the X header labels file.
@@ -124,11 +124,11 @@ Once all those files are in place the following processes can be run on the newl
 * Merge the X header and cleaned features data frames together with an outer join resulting in 64 columns being mapped and the rest with NA values.
 * Cast the merged header values to character.
 * Update the NA values to the word "Discard".
+* Load up the X merged data with the previously merged header values. Note that all the unwanted columns with get labels in the format "Discard.x", with x being a number.
 * Load up the activity labels.
-* Load up the X merged data with the previously merged header values.
 * Load up the Y merged data.
 * Merge the Y data with the activity labels.
-* Because the X and Y data are in the same order we can now append the Y data, using the activity labels, to the X data with a new column called Activity.
+* Because the X and Y data have the same number of rows and are in the same order we can now append the Y data, using the activity labels, to the X data with a new column called Activity.
 * All the columns containing the word "Discard" are then removed from the data frame.
 * The data are aggregated by the means of the Activity.
 * We then use the t function to switch the rows and columns of the data frame to get the data in the required format.

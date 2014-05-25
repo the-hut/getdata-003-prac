@@ -48,12 +48,10 @@ headerLabels <- merge(headerLabels, cfeatures, by="V1", all=T)
 headerLabels[,2] <- as.character(headerLabels[,2])
 headerLabels[with(headerLabels, is.na(headerLabels$V2)),]$V2 <- "Discard"
 
-activityLabels <- read.table("activities.txt")
-
 data <- read.table("X_merged.txt", col.names=as.vector(headerLabels[,2]))
 dataY <- read.table("Y_merged.txt")
 
-
+activityLabels <- read.table("activities.txt")
 
 dataJ <- merge(dataY, activityLabels, by="V1")
 data$Activity <- dataJ[2]$V2
