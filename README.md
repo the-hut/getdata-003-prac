@@ -35,9 +35,9 @@ The resultant tidy data file.
 
 ## Scripts
 All the scripts for this assignment are contained in the run_analysis.R file.  
-This file contains one function, tidy_data() which performs the entire transformation. It loads up the testing and training data along with headings for both the X and Y files and merges them into the X_headers.txt, X_merged.txt, Y_merged.txt and activities.txt files menationed above.
+This file contains one function, tidy_data(), which performs the entire transformation. It loads up the testing and training data along with headings for both the X and Y files and merges them into the X_headers.txt, X_merged.txt, Y_merged.txt and activities.txt files menationed above.
 
-These files are then loaded up into R and merged together to create a unified dataset. This dataset is then aggregated via the means to get the mean(average) value for each reading per activity. The aggregated data have their column and rows inverted and we use the t function to swith them around to create the final tidy data.
+These files are then loaded up into R and merged together to create a unified dataset with only the required variables as specified in the cleanedfeatures.txt file. This dataset is then aggregated via the means function to get the mean(average) value for each reading per activity. The aggregated data have their column and rows inverted and we use the t function to swith them around to create the final tidy data.
 
 ### Execution
 In order to generate the final tidy dataset the following commands need to be executed:  
